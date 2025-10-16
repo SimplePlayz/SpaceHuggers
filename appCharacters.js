@@ -187,7 +187,7 @@ class Character extends GameObject
             if (this.grenadeCount > 0 && this.pressingThrow && !this.wasPressingThrow && !this.grendeThrowTimer.active())
             {
                 // throw greande
-                --this.grenadeCount;
+                --this.grenadeCount; // MODIFIED: attempted to make grenades infinite ORIGINAL: --this.grenadeCount;
                 const grenade = new Grenade(this.pos);
                 grenade.velocity = this.velocity.add(vec2(this.getMirrorSign(),rand(.8,.7)).normalize(.25+rand(.02)));
                 grenade.angleVelocity = this.getMirrorSign() * rand(.8,.5);
@@ -416,7 +416,7 @@ class Enemy extends Character
             this.canBurn = 0;
         }
 
-        if (this.isBig = randSeeded() < .05)
+        if (this.isBig = randSeeded() < .9) // MODIFIED: attempt to make large chance... larger ORIGINAL: replace .9 with 0.05
         {
             // chance of large enemy with extra health
             this.size = this.size.scale(this.sizeScale = 1.3);
@@ -815,4 +815,5 @@ class Player extends Character
             }
         }
     }
+
 }
